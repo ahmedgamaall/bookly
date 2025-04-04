@@ -1,7 +1,12 @@
+import 'package:bookly/models/book.dart';
+import 'package:bookly/ui/views/home/widgets/custom_book_view_item.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedBooksListView extends StatelessWidget {
-  const FeaturedBooksListView({super.key});
+  final List<Book> books;
+  final void Function()? onTap;
+  
+  const FeaturedBooksListView({super.key, required this.books, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -10,22 +15,18 @@ class FeaturedBooksListView extends StatelessWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        // itemCount: state.books.length,
+        itemCount: books.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: GestureDetector(
-            onTap: () async {
-              // goToDetailsView(context, state.books[index]);
-            },
-            // child: CustomBookImage(
-            //   imageUrl:
-            //       state.books[index].volumeInfo.imageLinks?.thumbnail,
-            // ),
+            onTap: onTap,
+            child: CustomBookImage(
+              book:
+                  books[index],
+            ),
           ),
         ),
       ),
     );
   }
 }
-// FeaturedBooksLoadingWidget()
-// CustomErrorWidget(errorMessage: state.errorMessage)

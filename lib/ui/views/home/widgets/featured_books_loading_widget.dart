@@ -15,7 +15,7 @@ class FeaturedBooksLoadingWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 4),
           child: AspectRatio(
             aspectRatio: 2.6 / 4,
-            // child: Image.asset(Assets.loading),
+            child: Image.asset('assets/images/loading.png'),
           ),
         ),
       ),

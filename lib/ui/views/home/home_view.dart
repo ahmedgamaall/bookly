@@ -1,4 +1,10 @@
 import 'package:bookly/ui/common/app_colors.dart';
+import 'package:bookly/ui/common/app_strings.dart';
+import 'package:bookly/ui/views/home/widgets/custom_app_bar.dart';
+import 'package:bookly/ui/views/home/widgets/featured_books_loading_widget.dart';
+import 'package:bookly/ui/views/home/widgets/featured_list_view.dart';
+import 'package:bookly/ui/views/home/widgets/newest_books_list_view.dart';
+import 'package:bookly/ui/views/home/widgets/newest_books_loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -12,23 +18,50 @@ class HomeView extends StackedView<HomeViewModel> {
     return Scaffold(
       backgroundColor: kcPrimaryColor,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: !viewModel.dataReady
-                ? CircularProgressIndicator()
-                : ListView.builder(
-                    itemCount: viewModel.data?.length,
-                    itemBuilder: (context, index) {
-                      final book = viewModel.data?[index];
-                      return ListTile(
-                        title: Text(
-                          book!.volumeInfo.title ?? '',
-                        ),
-                      );
-                    },
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: CustomAppBar(),
                   ),
-          ),
+                  !viewModel.dataReady
+                      ? FeaturedBooksLoadingWidget()
+                     
+                      :  FeaturedBooksListView(
+                          books: viewModel.data ?? [],
+                        ),
+                  SizedBox(height: 50),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Text(
+                      'Newest Books',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: ksFontFamily,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+            SliverFillRemaining(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: !viewModel.dataReady
+                    ? NewestBooksLoadingWidget()
+                    :  NewestBooksListView(
+                        books: viewModel.data ?? [],
+                      ),
+              ),
+            ),
+          ],
         ),
       ),
     );

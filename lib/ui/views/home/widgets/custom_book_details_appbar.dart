@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomBookDetailsAppBar extends StatelessWidget {
-  const CustomBookDetailsAppBar({super.key});
+  final void Function()? onPressed;
+
+  const CustomBookDetailsAppBar({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -9,9 +11,7 @@ class CustomBookDetailsAppBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          onPressed: () {
-            // GoRouter.of(context).pop();
-          },
+          onPressed: onPressed,
           icon: const Icon(
             Icons.close,
           ),

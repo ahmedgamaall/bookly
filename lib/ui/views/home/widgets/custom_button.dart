@@ -1,6 +1,14 @@
+import 'package:bookly/ui/common/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
+  final String text;
+  final Color textColor;
+  final Color backgroundColor;
+  final bool isLeftBorderRadius;
+  final double? fontSize;
+  final void Function()? onPressed;
+  
   const CustomButton({
     super.key,
     required this.text,
@@ -10,12 +18,7 @@ class CustomButton extends StatelessWidget {
     this.fontSize,
     this.onPressed,
   });
-  final String text;
-  final Color textColor;
-  final Color backgroundColor;
-  final bool isLeftBorderRadius;
-  final double? fontSize;
-  final void Function()? onPressed;
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,11 +41,12 @@ class CustomButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          // style: Styles.textStyle18.copyWith(
-          //   color: textColor,
-          //   fontWeight: FontWeight.w900,
-          //   fontSize: fontSize,
-          // ),
+          style: TextStyle(
+            fontSize: fontSize,
+            fontWeight: FontWeight.w900,
+            fontFamily: ksFontFamily,
+            color: textColor,
+          ),
         ),
       ),
     );

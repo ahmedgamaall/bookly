@@ -1,3 +1,4 @@
+import 'package:bookly/ui/common/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class NewestBooksLoadingWidget extends StatelessWidget {
@@ -17,14 +18,16 @@ class NewestBooksLoadingWidget extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 2.6 / 4,
-                // child: Image.asset(Assets.loading),
+                child: Image.asset('assets/images/loading.png'),
               ),
               const SizedBox(width: 30),
               Text(
                 'Loading',
-                // style: Styles.textStyle20.copyWith(
-                //   fontFamily: kGTSectraFine,
-                // ),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontFamily: ksFontFamily,
+                  color: Colors.white,
+                ),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),

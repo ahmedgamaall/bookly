@@ -1,4 +1,5 @@
 import 'package:bookly/ui/common/app_colors.dart';
+import 'package:bookly/ui/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:stacked/stacked.dart';
@@ -27,6 +28,7 @@ class StartupView extends StackedView<StartupViewModel> {
                 fontSize: 40,
                 fontWeight: FontWeight.w900,
                 color: Colors.white,
+                fontFamily: ksFontFamily,
               ),
             ),
             Row(
@@ -36,6 +38,7 @@ class StartupView extends StackedView<StartupViewModel> {
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
+                      fontFamily: ksFontFamily,
                     )),
                 horizontalSpaceSmall,
                 SizedBox(

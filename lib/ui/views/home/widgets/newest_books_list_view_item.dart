@@ -1,4 +1,5 @@
 import 'package:bookly/models/book.dart';
+import 'package:bookly/ui/common/app_strings.dart';
 import 'package:bookly/ui/views/home/widgets/book_rating.dart';
 import 'package:bookly/ui/views/home/widgets/custom_book_view_item.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class BookListViewItem extends StatelessWidget {
         height: 125,
         child: Row(
           children: [
-            CustomBookImage(imageUrl: book.volumeInfo.imageLinks?.thumbnail),
+            CustomBookImage(book: book),
             const SizedBox(width: 30),
             Expanded(
               child: Column(
@@ -24,9 +25,12 @@ class BookListViewItem extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * .5,
                     child: Text(
                       book.volumeInfo.title!,
-                      // style: Styles.textStyle20.copyWith(
-                      //   fontFamily: kGTSectraFine,
-                      // ),
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: ksFontFamily,
+                        color: Colors.white,
+                      ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -34,7 +38,11 @@ class BookListViewItem extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     book.volumeInfo.authors!.first,
-                    // style: Styles.textStyle14,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: ksFontFamily,
+                      color: Colors.white,
+                    ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -43,9 +51,12 @@ class BookListViewItem extends StatelessWidget {
                     children: [
                       Text(
                         'Free',
-                        // style: Styles.textStyle20.copyWith(
-                        //   fontWeight: FontWeight.bold,
-                        // ),
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: ksFontFamily,
+                          color: Colors.white,
+                        ),
                       ),
                       const Spacer(),
                       BookRating(

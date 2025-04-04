@@ -1,10 +1,13 @@
 import 'package:bookly/models/book.dart';
 import 'package:bookly/ui/views/home/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BooksAction extends StatelessWidget {
-  const BooksAction({super.key, required this.book});
   final Book book;
+
+  const BooksAction({super.key, required this.book});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,7 +29,10 @@ class BooksAction extends StatelessWidget {
               textColor: Colors.white,
               isLeftBorderRadius: false,
               onPressed: () async {
-                // launchUrlFunction(context, book.volumeInfo.previewLink);
+                final url = Uri.parse('${book.volumeInfo.previewLink}');
+                if (await canLaunchUrl(url)) {
+                  launchUrl(url);
+                }
               },
             ),
           ),
